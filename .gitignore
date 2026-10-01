@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv*/
+venv*/
+.pytest_cache/
+.ruff_cache/
+
+# Build output (PyInstaller, setuptools)
+build/
+dist/
+*.spec
+
+# Generated test data stays out of the repository
+*.pst
+*.ost
+~*.pst.tmp
+*_expected_manifest.*
+_ballast_attachment.bin

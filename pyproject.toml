@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pst-testgen"
+dynamic = ["version"]
+description = "Generate Outlook PST files with a known answer - dates, counts and deletions - for testing forensic and eDiscovery tools"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Nikita Kuznetsov" }]
+keywords = ["pst", "outlook", "mapi", "test-data", "dfir", "forensics", "ediscovery", "ground-truth"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: Win32 (MS Windows)",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Topic :: Communications :: Email",
+    "Topic :: Security",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = ["pywin32>=306; sys_platform == 'win32'"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+build = ["pyinstaller>=6"]
+
+[project.scripts]
+pst-testgen = "pst_testgen.cli:entry_point"
+
+[project.urls]
+Homepage = "https://github.com/oblomsky42-dev/pst-testgen"
+Issues = "https://github.com/oblomsky42-dev/pst-testgen/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "pst_testgen.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
